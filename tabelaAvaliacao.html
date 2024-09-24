@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Avaliação na Educação</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="util.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+<!--===============================================================================================-->
+<meta name="robots" content="noindex, follow">
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">Data de abertura</th>
+								<th class="column2">Data de fechamento</th>
+								<th class="column3">Nome</th>
+								<th class="column4">Observações</th>
+							</tr>
+						</thead>
+						<tbody>
+								<tr>
+									<td class="column1">31/08/2024</td>
+									<td class="column2">31/08/2024</td>
+									<td class="column3">Ta4 - Avaliação na Educação</td>
+									<td class="column4">Pode ser acessada após o fechamento</td>
+								</tr>
+								<tr>
+									<td class="column1">03/12/2024</td>
+									<td class="column2">07/12/2024</td>
+									<td class="column3">Av - Subst. 1 - Avaliação na Educação</td>
+									<td class="column4"></td>
+								</tr>
+								<tr>
+									<td class="column1">03/12/2024</td>
+									<td class="column2">07/12/2024</td>
+									<td class="column3">Av - Subst. 2 - Avaliação na Educação</td>
+									<td class="column4"></td>
+								</tr>
+								<tr>
+									<td class="column1">07/09/2024</td>
+									<td class="column2">14/09/2024</td>
+									<td class="column3">Prova Presencial - 1º Chamada - Avaliação na Educação</td>
+									<td class="column4">Prova que não pode abrir outra página</td>
+								</tr>
+								<tr>
+									<td class="column1">05/08/2024</td>
+									<td class="column2">14/12/2024</td>
+									<td class="column3">Leitura1 - Avaliação na Educação</td>
+									<td class="column4"></td>
+								</tr>
+								<tr>
+									<td class="column1">02/12/2024</td>
+									<td class="column2">07/12/2024</td>
+									<td class="column3">Prova Presencial - 2º Chamada - Avaliação na Educação</td>
+									<td class="column4">Prova que não pode abrir outra página</td>
+								</tr>
+								<tr>
+									<td class="column1">09/12/2024</td>
+									<td class="column2">14/12/2024</td>
+									<td class="column3">Prova Presencial - Recuperação - Avaliação na Educação</td>
+									<td class="column4">Prova que não pode abrir outra página</td>
+								</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function compareDates() {
+			const rows = document.querySelectorAll('tbody tr');
+			const today = new Date(); // Pega a data atual (hoje)
+	
+			rows.forEach(row => {
+				const openDateText = row.cells[0].innerText; // Data de abertura
+				const closeDateText = row.cells[1].innerText; // Data de fechamento
+	
+				// Converte as datas para o formato aceito pelo JavaScript (yyyy-mm-dd)
+				const openDateParts = openDateText.split('/');
+				const closeDateParts = closeDateText.split('/');
+	
+				const openDate = new Date(openDateParts[2], openDateParts[1] - 1, openDateParts[0]);
+				const closeDate = new Date(closeDateParts[2], closeDateParts[1] - 1, closeDateParts[0]);
+	
+				// Diferença em milissegundos entre a data de fechamento e hoje
+				const timeDiff = closeDate - today; 
+				// Converter a diferença para dias
+				const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
+	
+				if (closeDate < today) {
+					// Se a data de fechamento já passou
+					row.classList.add('past-date');
+				} else if (daysLeft <= 3) {
+					// Se faltar 2 dias ou menos para fechar
+					row.classList.add('warning-date');
+				} else if (today < openDate) {
+					// Se a data de hoje for anterior à data de abertura
+					row.classList.add('future-date');
+				} else {
+					// Se a atividade ainda estiver aberta e a data de fechamento não tiver passado
+					row.classList.add('actual-date');
+				}
+			});
+		}
+	
+		// Chama a função após a página carregar completamente
+		window.onload = compareDates;
+	</script>
+</body>
+</html>

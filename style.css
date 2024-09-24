@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: 'Karma', sans-serif;
+  position: relative; /* Para o posicionamento do pseudo-elemento */
+}
+body::before {
+  content: '';
+  position: fixed; /* Fixa a imagem no fundo */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('pattern.png');
+  background-size: cover; /* Para cobrir toda a tela */
+  background-position: center; /* Centraliza a imagem */
+  opacity: 0.1; /* Ajuste a opacidade aqui */
+  z-index: -1; /* Coloca a imagem atrás do conteúdo */
+}
+
+.alert { color: red; } /* Define a cor do alerta */
+
+.materia {
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+    .past-date {
+        background-color: #ffcccc; /* Vermelho para atividades fechadas */
+    }
+    .future-date {
+      background-color: #ffcccc; /* Vermelho para atividades fechadas */
+  }
+    .actual-date {
+        background-color: #ccffcc; /* Verde para atividades abertas */
+    }
+    .warning-date {
+        background-color: #ffffcc; /* Amarelo para atividades que faltam 2 dias ou menos */
+    }
+

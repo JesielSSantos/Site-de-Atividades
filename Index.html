@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+    <title>Inicio</title>
+</head>
+<body>
+    <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+        <!-- First Photo Grid-->
+        <div class="w3-row-padding w3-padding-16 w3-center" id="food">
+            <div class="w3-quarter">
+                <a href="tabelaAvaliacao.html"><img src="Avaliacao.png" alt="Avaliacao" width="250" height="165" class="materia"></a>
+                <h3>Avaliação na Educação</h3>
+                <p><a href="tabelaAvaliacao.html">Acessar tabela de atividades</a></p>
+            </div>
+            <div class="w3-quarter">
+                <a href="tabelaLetramentos.html"><img src="Letramento.jpg" alt="Steak" width="250" height="165" class="materia"></a>
+                <h3>Letramentos e Alfabetização</h3>
+                <p><a href="tabelaLetramentos.html">Acessar tabela de atividades</a></p>
+            </div>
+            <div class="w3-quarter">
+                <a href="tabelaOrganizacao.html"><img src="Organizacao.png" alt="Cherries" width="250" height="165" class="materia"></a>
+                <h3>Organização do Trabalho Pedagógico nos Anos Iniciais do Ensino Fundamental</h3>
+                <p><a href="tabelaOrganizacao.html">Acessar tabela de atividades</a></p>
+            </div>
+            <div class="w3-quarter">
+                <a href="tabelaNatureza.html"><img src="Natureza.jpg" alt="Pasta and Wine" width="250" height="165" class="materia"></a>
+                <h3>Natureza e Sociedade</h3>
+                <p><a href="tabelaNatureza.html">Acessar tabela de atividades</a></p>
+            </div>
+        </div>
+        
+        <!-- Second Photo Grid-->
+        <div class="w3-row-padding w3-padding-16 w3-center">
+            <div class="w3-quarter">
+                <a href="tabelaPraticas.html"><img src="Praticas.jpg" alt="Popsicle" width="250" height="165" class="materia"></a>
+                <h3>Práticas Pedagógicas: Identidade Docente</h3>
+                <p><a href="tabelaPraticas.html">Acessar tabela de atividades</a></p>
+            </div>
+            <div class="w3-quarter">
+                <a href="tabelaHistoria.html"><img src="Historia.jpg" alt="Salmon" width="250" height="165" class="materia"></a>
+                <h3>História da Educação (Adaptação - Especial)</h3>
+                <p><a href="tabelaHistoria.html">Acessar tabela de atividades</a></p>
+            </div>
+            <div class="w3-quarter">
+                <a href="tabelaEducacao.html"><img src="Educacao.jpg" alt="Sandwich" width="250" height="165" class="materia"></a>
+                <h3>Educação e Diversidade (Adaptação)</h3>
+                <p><a href="tabelaEducacao.html">Acessar tabela de atividades</a></p>
+            </div>
+            <div class="w3-quarter">
+                <a href="tabelaDidatica.html"><img src="Didatica.jpg" alt="Croissant" width="250" height="165" class="materia"></a>
+                <h3>Didática (Adaptação - Especial)</h3>
+                <p><a href="tabelaDidatica.html">Acessar tabela de atividades</a></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function checkClosingDates() {
+            const titles = document.querySelectorAll('.activity-title');
+            const today = new Date();
+
+            titles.forEach(title => {
+                const closeDateText = title.getAttribute('data-close-date'); // Pega a data de fechamento
+                const closeDateParts = closeDateText.split('/');
+                const closeDate = new Date(closeDateParts[2], closeDateParts[1] - 1, closeDateParts[0]);
+
+                const timeDiff = closeDate - today; // Diferença em milissegundos entre a data de fechamento e hoje
+                const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Converter a diferença para dias
+
+                // Verifica se a atividade está prestes a fechar
+                if (daysLeft <= 2 && daysLeft >= 0) {
+                    title.innerHTML += ' <span class="alert">⚠️</span>'; // Adiciona o símbolo de alerta
+                }
+            });
+        }
+
+        // Chama a função após a página carregar
+        window.onload = checkClosingDates;
+    </script>
+</body>
+</html>
